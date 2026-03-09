@@ -110,6 +110,16 @@ button:hover {
   justify-content: center;
 }
 
+.resultado.apto{
+  border: 2px solid rgb(0, 255, 42);
+  color: rgb(0, 255, 42);
+}
+
+.resultado.nao-apto{
+  border: 2px solid rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+}
+
 footer {
   display: flex;
   align-items: flex-end;
