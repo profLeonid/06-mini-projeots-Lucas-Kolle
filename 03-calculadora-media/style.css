@@ -109,6 +109,22 @@ button:hover {
   border: 1px solid #374151;
   align-items: center;
   justify-content: center;
+  white-space: pre-line;
+}
+
+.resultado.aprovado{
+  color: rgb(0, 255, 42);
+  border: 2px solid rgb(0, 255, 42);
+}
+
+.resultado.recuperacao{
+  color: rgb(238, 255, 0);
+  border: 2px solid rgb(238, 255, 0);
+}
+
+.resultado.reprovado{
+  color: red;
+  border: 2px solid red;
 }
 
 footer {
