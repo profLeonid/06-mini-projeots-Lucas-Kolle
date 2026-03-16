@@ -1,17 +1,44 @@
 "use strict"
 
+//função para remover as classes criadas no css
+const removerClasses = function(){
+    const exibirResultado = document.getElementById("exibirResultado")
+
+    exibirResultado.classList.remove("cinco")
+    exibirResultado.classList.remove("sete")
+    exibirResultado.classList.remove("dez")
+}
+
+//função para calcular e exibir o valor do desconto
 const calcularDesconto = function(){
-    const preco = document.getElementById("preco")
-    const desconto = document.getElementById("desconto")
-    const resultado = document.getElementById("resultado")
+    const precoInicial = document.getElementById("precoInicial")
+    const valordesconto = document.getElementById("valorDesconto")
+    const exibirResultado = document.getElementById("exibirResultado")
 
-    const resultadoFinal = Number(preco.value) * (Number(desconto.value) / 100)
+    //calcular o valor do desconto
+    let desconto = Number(precoInicial.value) * (Number(valordesconto.value) / 100)
 
-    const economia = Number(preco.value) - Number(resultadoFinal)
+    //calcular o preço final
+    let precoFinal = Number(precoInicial.value - Number(desconto))
 
-    if(desconto.value <= 5){
-        resultado.textContent = `O valor final é:${resultadoFinal.toFixed(2)} O total economizado foi de:${economia.toFixed(2)}`
-    }
+    //calcular o valor economizado
+    let valorEconomizado = Number(precoInicial.value) - Number(precoFinal)
 
-    
+    removerClasses()
+    //condicional para exibir os resultados
+    if(valordesconto.value < 5){
+        exibirResultado.textContent = `Preço Final: R$${precoFinal.toFixed(2)}.\nValor do Desconto: R$${valorEconomizado.toFixed(2)}.`
+        exibirResultado.classList.add("cinco")
+
+    }else if(valordesconto.value <= 10){
+        exibirResultado.textContent = `Preço Final: R$${precoFinal.toFixed(2)}.\nValor do Desconto: R$${valorEconomizado.toFixed(2)}.`
+        exibirResultado.classList.add("sete")
+
+    }else if(valordesconto.value > 10){
+        exibirResultado.textContent = `Preço Final: R$${precoFinal.toFixed(2)}.\nValor do Desconto: R$${valorEconomizado.toFixed(2)}.`
+        exibirResultado.classList.add("dez")
+
+    }else
+        exibirResultado.textContent = `Não foi Possível Realizar o Calculo`
+
 }
