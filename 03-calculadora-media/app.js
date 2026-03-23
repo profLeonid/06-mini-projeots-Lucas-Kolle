@@ -4,40 +4,36 @@ const inserirNota1 = document.getElementById("inserir-nota1")
 const inserirNota2 = document.getElementById("inserir-nota2")
 const inserirNota3 = document.getElementById("inserir-nota3")
 const exibirResultado = document.getElementById("exibir-resultado")
+const botaoCalcular = document.getElementById("botao-calcular")
 
-
-function mostrarValores(){
-console.log("teste")
-}
 //função para mostrar os valores
-const mostrarValores2 = function(){
+const mostrarValores = function(){
 
-console.log("teste")
+    let mediaAluno
+    mediaAluno = calcularMedia(inserirNota1.value, inserirNota2.value, inserirNota3.value)
 
-    // let mediaAluno
-    // mediaAluno = calcularMedia(inserirNota1.value, inserirNota2.value, inserirNota3.value)
+    let situacaoAluno
+    situacaoAluno = definirSituacao(mediaAluno)
 
-    // let situacaoAluno
-    // situacaoAluno = definirSituacao(mediaAluno)
+    if(situacaoAluno == "APROVADO"){
+        exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
+        exibirResultado.classList.add("aprovado")
+        return exibirResultado.textContent = (`Média do Aluno(a):${mediaAluno}\nSituação do Aluno(a):${situacaoAluno}`)
 
-    // if(situacaoAluno == "APROVADO"){
-    //     exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
-    //     exibirResultado.classList.add("aprovado")
-    //     return exibirResultado.textContent = (`Média do Aluno(a):${mediaAluno}\nSituação do Aluno(a):${situaçãoAluno}`)
-
-    // }else if(situacaoAluno == "REPROVADO"){
-    //     exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
-    //     exibirResultado.classList.add("reprovado")
-    //     return exibirResultado.textContent = (`Média do Aluno(a):${mediaAluno}\nSituação do Aluno(a):${situaçãoAluno}`)
+    }else if(situacaoAluno == "REPROVADO"){
+        exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
+        exibirResultado.classList.add("reprovado")
+        return exibirResultado.textContent = (`Média do Aluno(a):${mediaAluno}\nSituação do Aluno(a):${situacaoAluno}`)
         
-    // }else if(situacaoAluno == "RECUPERAÇÃO"){
-    //     exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
-    //     exibirResultado.classList.add("recuperacao")
-    //     return exibirResultado.textContent = (`Média do Aluno(a):${mediaAluno}\nSituação do Aluno(a):${situaçãoAluno}`)
+    }else if(situacaoAluno == "RECUPERAÇÃO"){
+        exibirResultado.classList.remove("aprovado", "reprovado", "recuperacao")
+        exibirResultado.classList.add("recuperacao")
+        exibirResultado.textContent = `Média do Aluno(a): ${mediaAluno}\nSituação do Aluno(a): ${situacaoAluno}`
+        return true
         
-    // }else{
-    //     return false
-    // }
+    }else{
+        return false
+    }
 
 }
 
@@ -59,18 +55,18 @@ const calcularMedia = function(valor1,valor2,valor3){
 const definirSituacao = function(media){
     //criando váriavéis necessárias
     let mediaAluno = Number(media)
-    let situaçãoAluno
+    let situacaoAluno
 
     //condicionais para definir situação
     if(mediaAluno >= 7)
-        return situaçãoAluno = "APROVADO"
+        return situacaoAluno = "APROVADO"
     else if(mediaAluno <5)
-        return situaçãoAluno = "REPROVADO"
+        return situacaoAluno = "REPROVADO"
     else if(mediaAluno >= 5 || mediaAluno < 7)
-        return situaçãoAluno = "RECUPERAÇÃO"
+        return situacaoAluno = "RECUPERAÇÃO"
     else{
         return false
     }
 }
 
-.addEventListener("click", mostrarValores)
+botaoCalcular.addEventListener("click", mostrarValores)
